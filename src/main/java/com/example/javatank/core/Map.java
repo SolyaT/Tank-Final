@@ -27,6 +27,9 @@ public class Map {
             grid[0][j] = 1;
             grid[width - 1][j] = 1;
         }
+
+        grid[3][2] = 1;
+        grid[1][2] = 1;
     }
 
     public int getWidth() {

@@ -1,14 +1,17 @@
 package com.example.javatank.core;
 
+import com.example.javatank.core.tank.Tank;
+import com.example.javatank.core.tank.TankType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameCore extends JPanel implements KeyListener {
-    private static final int SCREEN_WIDTH = 800;
-    private static final int SCREEN_HEIGHT = 600;
-    private static final int CELL_SIZE = 50;
+    private static final int SCREEN_WIDTH = 600;
+    private static final int SCREEN_HEIGHT = 400;
+    public static final int CELL_SIZE = 50;
 
     private Tank tank;
     private Tank secondTank;
@@ -79,11 +82,11 @@ public class GameCore extends JPanel implements KeyListener {
             secondTank.moveRight();
         }
 
-        if (key == KeyEvent.VK_SPACE){
+        if (key == KeyEvent.VK_SPACE) {
             tank.shoot();
         }
 
-        if (key == KeyEvent.VK_ENTER){
+        if (key == KeyEvent.VK_ENTER) {
             secondTank.shoot();
         }
 
@@ -105,12 +108,12 @@ public class GameCore extends JPanel implements KeyListener {
         int tankY = (SCREEN_HEIGHT / CELL_SIZE) / 2;
 
         if (gameType == GameType.MULTI_PLAY) {
-            tank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE);
-            secondTank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE);
+            tank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE, TankType.RED, map);
+            secondTank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE, TankType.BLUE, map);
         }
 
         if (gameType == GameType.SINGLE_PLAY) {
-            tank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE);
+            tank = new Tank(tankX * CELL_SIZE, tankY * CELL_SIZE, TankType.RED, map);
         }
     }
 
