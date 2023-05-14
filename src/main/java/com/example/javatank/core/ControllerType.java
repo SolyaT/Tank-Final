@@ -1,4 +1,4 @@
-package com.example.javatank.model;
+package com.example.javatank.core;
 
 public enum ControllerType {
     Keyboard, Arrow

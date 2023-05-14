@@ -6,4 +6,6 @@ module com.example.javatank {
 
     opens com.example.javatank to javafx.fxml;
     exports com.example.javatank;
+    exports com.example.javatank.core;
+    opens com.example.javatank.core to javafx.fxml;
 }
