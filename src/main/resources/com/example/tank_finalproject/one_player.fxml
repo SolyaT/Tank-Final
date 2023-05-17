@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: C154C1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tank_finalproject.OnePlayer">
+   <children>
+      <ImageView fitHeight="195.0" fitWidth="229.0" layoutX="352.0" layoutY="-50.0">
+         <image>
+            <Image url="@Explosion-free-to-use-clip-art.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="195.0" fitWidth="229.0" layoutY="47.0">
+         <image>
+            <Image url="@Explosion-free-to-use-clip-art.png" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <Button layoutX="199.0" layoutY="210.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="35.0" style="-fx-background-color: grey;" text="↑" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="198.0" layoutY="252.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="35.0" style="-fx-background-color: grey;" text="↓" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="158.0" layoutY="252.0" mnemonicParsing="false" style="-fx-background-color: grey;" text="←" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="238.0" layoutY="252.0" mnemonicParsing="false" style="-fx-background-color: grey;" text="→" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="184.0" layoutY="295.0" text="movement" textFill="#ebf673">
+         <font>
+            <Font name="Cooper Black" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="312.0" layoutY="252.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="146.0" style="-fx-background-color: grey;" text="space" textFill="WHITE" />
+      <Label layoutX="372.0" layoutY="295.0" text="shot" textFill="#ebf673">
+         <font>
+            <Font name="Cooper Black" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="60.0" text="WELCOME!">
+         <font>
+            <Font name="Cooper Black" size="36.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.3686274588108063" green="0.3686274588108063" blue="0.3686274588108063" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="name" layoutX="85.0" layoutY="138.0" onAction="#write_name" prefHeight="38.0" prefWidth="429.0" promptText="ENTER YOUR NAME">
+         <font>
+            <Font name="Cooper Black" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="play" layoutX="438.0" layoutY="322.0" mnemonicParsing="false" onAction="#press_play" style="-fx-background-radius: 50; -fx-background-color: #F44336;" text="PLAY" textFill="#ebf673">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="85.0" layoutY="322.0" mnemonicParsing="false" onAction="#press_back" style="-fx-background-radius: 50; -fx-background-color: #4169E1;" text="BACK" textFill="#ebf673">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
