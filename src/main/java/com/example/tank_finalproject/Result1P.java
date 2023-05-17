@@ -30,5 +30,4 @@ public class Result1P {
         stage.setScene(scene);
         stage.show();
     }
-
 }

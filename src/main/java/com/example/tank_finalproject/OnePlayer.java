@@ -1,5 +1,7 @@
 package com.example.tank_finalproject;
 
+import com.example.javatank.core.GameCore;
+import com.example.javatank.core.GameType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +38,9 @@ public class OnePlayer {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);stage.setScene(scene);
         stage.show();
+
+        GameCore gameCore = new GameCore(GameType.SINGLE_PLAY, name.getText());
+        gameCore.startGame();
     }
 
     @FXML

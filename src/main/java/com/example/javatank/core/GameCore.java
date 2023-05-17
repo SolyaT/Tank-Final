@@ -3,13 +3,13 @@ package com.example.javatank.core;
 import com.example.javatank.core.bot.TankBot;
 import com.example.javatank.core.tank.Tank;
 import com.example.javatank.core.tank.TankType;
-import javafx.application.Application;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +42,27 @@ public class GameCore extends JPanel implements KeyListener {
     private boolean secondTankMovingRight = false;
 
 
-    public GameCore(GameType gameType) {
+    public GameCore(GameType gameType, String firstTank) {
+        this.gameType = gameType;
+
+        int mapWidth = SCREEN_WIDTH / CELL_SIZE;
+        int mapHeight = SCREEN_HEIGHT / CELL_SIZE;
+
+        map = new Map(mapWidth, mapHeight);
+
+        initTank();
+        setFocusable(true);
+        addKeyListener(this);
+        
+        if (gameType == GameType.SINGLE_PLAY){
+            tank.name = firstTank;
+            secondTank.name = "BOT";
+        }
+
+        gameLoop();
+    }
+
+    public GameCore(GameType gameType, String firstTankName, String secondTankName) {
         this.gameType = gameType;
 
         int mapWidth = SCREEN_WIDTH / CELL_SIZE;
@@ -54,13 +74,9 @@ public class GameCore extends JPanel implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
 
-        Tank[] tempTank = {tank, secondTank};
-        tanks = new ArrayList<>();
-
-        for (Tank value : tempTank) {
-            if (value != null) {
-                tanks.add(value);
-            }
+        if (gameType == GameType.MULTI_PLAY){
+            tank.name = firstTankName;
+            secondTank.name = secondTankName;
         }
 
         gameLoop();
@@ -200,19 +216,19 @@ public class GameCore extends JPanel implements KeyListener {
         for (Tank tank : tanks) {
             if (!tank.isAlive) {
                 if (currentRound < COUNT_ROUND) {
-                ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                executorService.schedule(() -> {
-                    reset();
-                    currentRound++;
-                }, 3, TimeUnit.SECONDS);
-                executorService.shutdown();
-                break;
-            } else {
-                System.out.println("===============================");
-                System.out.println("Hits: " + tank.getCountOfHit());
-                System.out.println("Kills: " + tank.getCountOfKill());
-                System.out.println("===============================");
-            }
+                    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+                    executorService.schedule(() -> {
+                        reset();
+                        currentRound++;
+                    }, 3, TimeUnit.SECONDS);
+                    executorService.shutdown();
+                    break;
+                } else {
+                    System.out.println("===============================");
+                    System.out.println("Hits: " + tank.getCountOfHit());
+                    System.out.println("Kills: " + tank.getCountOfKill());
+                    System.out.println("===============================");
+                }
             }
         }
     }
@@ -237,6 +253,10 @@ public class GameCore extends JPanel implements KeyListener {
             secondTank = new Tank(tankX * CELL_SIZE, (tankY - 5) * CELL_SIZE, TankType.BOT, map, this);
             botTank = new TankBot(secondTank, this);
         }
+
+        Tank[] tempTank = {tank, secondTank};
+        tanks = new ArrayList<>();
+        tanks.addAll(Arrays.asList(tempTank));
     }
 
     public void gameLoop() {
@@ -260,10 +280,9 @@ public class GameCore extends JPanel implements KeyListener {
         gameThread.start();
     }
 
-    public static void main(String[] args) {
+    public void startGame() {
         JFrame frame = new JFrame("Tank Game");
-        GameCore game = new GameCore(GameType.MULTI_PLAY);
-        frame.add(game);
+        frame.add(this);
         frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

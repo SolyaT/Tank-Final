@@ -20,6 +20,8 @@ public class Tank {
     private int x;
     private int y;
 
+    public String name;
+
     private int speed;
     private int direction;
 
