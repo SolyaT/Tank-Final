@@ -1,5 +1,6 @@
 package com.example.tank_finalproject;
 
+import com.example.javatank.core.GameCore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
