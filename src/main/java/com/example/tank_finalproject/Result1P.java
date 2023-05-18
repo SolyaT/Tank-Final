@@ -1,5 +1,6 @@
 package com.example.tank_finalproject;
 
+import com.example.javatank.core.GameCore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Result1P {
 
@@ -29,5 +34,9 @@ public class Result1P {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void setInformation(String name, int kill, int hit){
+
     }
 }

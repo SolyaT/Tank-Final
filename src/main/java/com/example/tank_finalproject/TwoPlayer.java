@@ -36,10 +36,6 @@ public class TwoPlayer {
 
     @FXML
     void press_play(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("result2P.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);stage.setScene(scene);
-        stage.show();
 
         GameCore gameCore = new GameCore(GameType.MULTI_PLAY, name_first.getText(), name_second.getText());
         gameCore.startGame();
@@ -58,8 +54,9 @@ public class TwoPlayer {
     @FXML
     void press_back(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);stage.setScene(scene);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 

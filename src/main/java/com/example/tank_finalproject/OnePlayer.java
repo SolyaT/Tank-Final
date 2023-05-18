@@ -34,11 +34,6 @@ public class OnePlayer {
 
     @FXML
     void press_play(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("result1P.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);stage.setScene(scene);
-        stage.show();
-
         GameCore gameCore = new GameCore(GameType.SINGLE_PLAY, name.getText());
         gameCore.startGame();
     }
@@ -51,8 +46,9 @@ public class OnePlayer {
     @FXML
     void press_back(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);stage.setScene(scene);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 

@@ -42,20 +42,21 @@ public class Tank {
     private boolean canShoot = true;
     private int shootCooldown = 1;
     private int damage = 20;
-    private int countOfKill;
-    private int countOfHit;
+    public int countOfKill;
+    public int countOfHit;
 
     private Clip hitSound;
     private Clip shootSound;
     private Clip explosionSound;
 
-    public Tank(int x, int y, TankType tankType, Map map, GameCore gameCore) {
+    public Tank(String name, int x, int y, TankType tankType, Map map, GameCore gameCore) {
         maxHealth = 100;
 
         this.x = x;
         this.y = y;
         this.tankType = tankType;
         this.gameCore = gameCore;
+        this.name = name;
         currentHealth = maxHealth;
         currentMap = map;
 
@@ -63,6 +64,11 @@ public class Tank {
         speed = 5;
         loadTankImage();
         loadTankSounds();
+
+        System.out.println("==============Created Tank===============");
+        System.out.println("Name: " + name);
+        System.out.println("=========================================");
+
     }
 
     private void loadTankImage() {
@@ -162,6 +168,10 @@ public class Tank {
     }
 
     private void applyDamage(int damage) {
+        if (!isAlive) {
+            return;
+        }
+
         Random random = new Random();
         var randomDamage = random.nextInt(damage - 11) + damage;
         currentHealth -= randomDamage;
